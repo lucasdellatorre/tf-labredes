@@ -15,6 +15,29 @@ while True:
     binascii.hexlify(eth_hdr[2])
 
     ipHeader = frame[0][14:34]
-    ip_hdr = struct.unpack("!12s4s4s", ipHeader) # 12s represents Identification, Time to Live, Protocol | Flags, Fragment Offset, Header Chec
-    print ("Source IP address %s" % inet_ntoa(ip_hdr[1])) # network to ascii convertion
-    print ("Destination IP address %s" % inet_ntoa(ip_hdr[2])) # network to ascii convertion
+    ip_hdr = struct.unpack('!BBHHHBBH4s4s' , ipHeader)
+    version_ihl = ip_hdr[0]
+    version = version_ihl >> 4
+    protocol = ip_hdr[6]
+
+    source_address = inet_ntoa(ip_hdr[8])
+    destination_address = inet_ntoa(ip_hdr[9])
+    
+    if version == 4:
+        print("IPv4")
+    elif version == 6:
+        print("IPv6")
+    else:
+        print("Other network protocol version (%d)" % version)
+
+    print ("Source IP address %s" % source_address) # network to ascii convertion
+    print ("Destination IP address %s" % destination_address) # network to ascii convertion
+
+    if protocol == 6:
+        print("TCP")
+    elif protocol == 17:
+        print("UDP")
+    elif protocol == 1:
+        print("ICMP")
+    else:
+        print("Other transport protocol code (%d)" % protocol)
