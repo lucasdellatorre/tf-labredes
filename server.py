@@ -33,7 +33,7 @@ def flooding_checker():
         print(f"UDP: {udp_count}")
         print(f"TCP: {tcp_count}")
         if arp_reply_count > arp_request_count * 3:
-            print("== Arp Flooding detectado! ==")
+            print("== Arp Spoofing detectado! ==")
         
         if icmp_count > 1000:
             print("== ICMP Flooding detectado! ==")
