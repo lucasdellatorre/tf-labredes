@@ -16,28 +16,27 @@ udp_count = 0
 tcp_count = 0
 
 icmp_count = 0
-arp_count = 0
 
 def flooding_checker():
-    global arp_request_count, arp_reply_count, icmp_count, ipv4_count, ipv6_count, icmpv6_count, udp_count, tcp_count, arp_count
+    global arp_request_count, arp_reply_count, icmp_count, ipv4_count, ipv6_count, icmpv6_count, udp_count, tcp_count
     # print("OI")
     while True:
-        time.sleep(5)  # Interval time for checking flooding (adjust as needed)
+        time.sleep(2)  # Interval time for checking flooding (adjust as needed)
         
-        print('==== Flood Checker ====')
-        print(f"ARP req: {arp_request_count}")
-        print(f"ARP rep: {arp_reply_count}")
+        print('==== Quantidade de pacotes ====')
+        print(f"ARP request: {arp_request_count}")
+        print(f"ARP repçy: {arp_reply_count}")
         print(f"ICMP: {icmp_count}")
         print(f"IPv4: {ipv4_count}")
         print(f"IPv6: {ipv6_count}")
         print(f"ICMPv6: {icmpv6_count}")
         print(f"UDP: {udp_count}")
         print(f"TCP: {tcp_count}")
-        if arp_count > 10:
-            print("== Arp Flooding detected! ==")
+        if arp_reply_count > arp_request_count * 3:
+            print("== Arp Flooding detectado! ==")
         
-        if icmp_count > 10:
-            print("== ICMP Flooding detected! ==")
+        if icmp_count > 1000:
+            print("== ICMP Flooding detectado! ==")
         print('=======================')
 
 
@@ -48,7 +47,6 @@ def flooding_checker():
         icmpv6_count = 0
         udp_count = 0
         tcp_count = 0
-        arp_count = 0
         icmp_count = 0
 
     
@@ -80,8 +78,6 @@ while True:
         # print(f"Source IP: {source_ip}")
         # print(f"Target MAC: {target_mac}")
         # print(f"Target IP: {target_ip}")
-
-        arp_count += 1
 
         if arp_operation == 1:  # 1 is request, 2 is reply
             # print("ARP Request")
