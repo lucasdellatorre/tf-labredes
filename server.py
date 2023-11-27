@@ -39,7 +39,7 @@ def flooding_checker():
             print("== ICMP Flooding detectado! ==")
 
         if icmpv6_count > 1000:
-            print("== ICMP Flooding detectado! ==")
+            print("== ICMPv6 Flooding detectado! ==")
         print('=======================')
 
 
@@ -122,6 +122,8 @@ while True:
             icmpv6_type = icmpv6_hdr[0]
             icmpv6_code = icmpv6_hdr[1]
             icmpv6_checksum = icmpv6_hdr[2]
+
+            icmpv6_count += 1
 
             # print("ICMPv6 Packet:")
             # print(f"Type: {icmpv6_type}")
