@@ -37,6 +37,9 @@ def flooding_checker():
         
         if icmp_count > 1000:
             print("== ICMP Flooding detectado! ==")
+
+        if icmpv6_count > 1000:
+            print("== ICMP Flooding detectado! ==")
         print('=======================')
 
 
