@@ -25,7 +25,7 @@ def flooding_checker():
         
         print('==== Quantidade de pacotes ====')
         print(f"ARP request: {arp_request_count}")
-        print(f"ARP repçy: {arp_reply_count}")
+        print(f"ARP reply: {arp_reply_count}")
         print(f"ICMP: {icmp_count}")
         print(f"IPv4: {ipv4_count}")
         print(f"IPv6: {ipv6_count}")
@@ -132,6 +132,7 @@ while True:
             # Add handling for specific ICMPv6 types and codes as needed
 
     else:
+        ipv4_count += 1
         ipHeader = frame[0][14:34]
         ip_hdr = struct.unpack('!BBHHHBBH4s4s', ipHeader)
         version_ihl = ip_hdr[0]
